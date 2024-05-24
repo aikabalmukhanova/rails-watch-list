@@ -1,0 +1,18 @@
+<div class="container text-light">
+  <h1>
+    <%= @list.name %>
+  </h1>
+
+    <% @list.bookmarks.each do |bookmark| %>
+  <li class='my-2 p-2 text-light'>
+    <%= bookmark.movie.title %>
+    <%= link_to '🗑️', list_bookmark_path(@list, bookmark), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn" %>
+  </li>
+    <% end %>
+
+  <%= simple_form_for [ @list, @bookmark ] do |f| %>
+  <%= f.input :comment %>
+  <%= f.association :movie %>
+  <%= f.button :submit %>
+<% end %>
+</div>

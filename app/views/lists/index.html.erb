@@ -1,0 +1,26 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
+  <div class="container text-center">
+    <h1>Save your movies to watch:</h1>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="d-flex m-4 p-4 justify-content-around">
+  <h3 class="text-light fw-bold">My Lists</h3>
+  <%= link_to 'Create a movie list', new_list_path, class: "btn btn-dark fw-bold" %>
+  </div>
+
+<hr>
+
+  <div class="row">
+  <div class="lists d-flex m-4 p-4 justify-content-around">
+  <% @lists.each do |list| %>
+    <div class="card w-25 d-flex text-center rounded" style="background-image:linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.1)), url(<%= asset_path('popcorn.avif') %>); background-size: cover">
+      <p><%= link_to list.name, list_path(list), class: "text-decoration-none text-light fs-5 fw-bold"%></p>
+      <p><%= link_to '🗑️', list_path(list.id), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn m-0 p-0" %></p>
+    </div>
+      <% end %>
+  </div>
+</div>
+</div>
